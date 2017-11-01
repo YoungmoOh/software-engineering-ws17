@@ -1,22 +1,22 @@
-public class DollarToEuroConverter extends CurrencyConverter
+public class FahrenheitToKelvinConverter extends TemperatureConverter
 {
 	static double in = 0;
 	static double out = 0;
 
-  public DollarToEuroConverter() { }
+  public FahrenheitToKelvinConverter() { }
 
   public double convert(double inValue) {
-    return inValue*0.85;
+    return (inValue+459.67)*5/9;
   }
 
   public String toString(){
-    return "Dollar to Euro Converter";
+    return "Fahrenheit To Kelvin Converter";
   }
   
   public void print() {
-	  System.out.println(toString() + " has converted " + in + " USD to " + out + " EUR");
+	  System.out.println(toString() + " has converted " + in + " F to " + out + " K");
   }
-
+  
   // change the input value to double and calculate the output
   public void putValues(String value) {
 	  in = Double.parseDouble(value);

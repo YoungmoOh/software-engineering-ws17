@@ -1,22 +1,22 @@
-public class DollarToEuroConverter extends CurrencyConverter
+public class EuroToWonConverter extends CurrencyConverter
 {
 	static double in = 0;
 	static double out = 0;
 
-  public DollarToEuroConverter() { }
+  public EuroToWonConverter() { }
 
   public double convert(double inValue) {
-    return inValue*0.85;
+    return inValue*1300;
   }
 
   public String toString(){
-    return "Dollar to Euro Converter";
+    return "Euro to Korean Won Converter";
   }
   
   public void print() {
-	  System.out.println(toString() + " has converted " + in + " USD to " + out + " EUR");
+	  System.out.println(toString() + " has converted " + in + " EUR to " + out + " KRW");
   }
-
+  
   // change the input value to double and calculate the output
   public void putValues(String value) {
 	  in = Double.parseDouble(value);
