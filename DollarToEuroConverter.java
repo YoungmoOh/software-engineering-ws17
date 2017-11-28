@@ -23,4 +23,8 @@ public class DollarToEuroConverter extends CurrencyConverter
 	  out = convert(in);
   }
   
+  public static DollarToEuroConverter create() {
+	  return new DollarToEuroConverter();
+  }
+  
 };

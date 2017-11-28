@@ -1,4 +1,3 @@
-import java.lang.reflect.Method;
 import java.util.Scanner;
 
 class Main {
@@ -11,6 +10,7 @@ class Main {
 	  try {
 		    conversion = args[0];
 		    value = args[1];
+
 	  } // otherwise, get the parameters
 	  catch(ArrayIndexOutOfBoundsException e) {
 		  Scanner scan = new Scanner(System.in);
@@ -21,24 +21,25 @@ class Main {
 		  value = scan.nextLine();
 	  }
 	  
-	  while (!isDouble(value)) {	// the value should be double
+	  // the value should be double
+	  while (!isDouble(value)) {
 		  Scanner scan2 = new Scanner(System.in);
 		  System.out.print("Please enter a double value: ");
 		  value = scan2.nextLine();
 	  }
-	
-	// dynamically make Instance with the String value
-	Class<?> cls = Class.forName(conversion);
-	Object obj = cls.newInstance();
-	
-	// use Methods - putValues & print
-	// method 'putValues' requires a string as a parameter
-	Method m = cls.getDeclaredMethod("putValues", new Class[] {String.class});
-	m.invoke(obj, value);
-	m = cls.getDeclaredMethod("print");
-	m.invoke(obj);
+	  
+	  // Get the Single Instance of the factory
+	  ConverterFactory factory = ConverterFactory.getInstance();
+	  
+	  // Get the corresponding converter
+	  UnitConverter converter = factory.create(conversion);;
+	  
+	  // Calculate and print the result
+	  converter.putValues(value);
+	  converter.print();
   }
   
+  // is the string parsable as double?
   public static boolean isDouble(String value) {
 	  try {
 		  Double.parseDouble(value);

@@ -23,4 +23,8 @@ public class PinchToTspConverter extends CookingConverter
 	  out = convert(in);
   }
   
+  public static PinchToTspConverter create() {
+	  return new PinchToTspConverter();
+  }
+  
 };

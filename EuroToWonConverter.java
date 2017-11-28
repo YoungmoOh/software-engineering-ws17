@@ -23,4 +23,8 @@ public class EuroToWonConverter extends CurrencyConverter
 	  out = convert(in);
   }
   
+  public static EuroToWonConverter create() {
+	  return new EuroToWonConverter();
+  }
+  
 };

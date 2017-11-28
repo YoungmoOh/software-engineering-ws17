@@ -23,4 +23,8 @@ public class CelciusToFahrenheitConverter extends TemperatureConverter
 	  out = convert(in);
   }
   
+  public static CelciusToFahrenheitConverter create() {
+	  return new CelciusToFahrenheitConverter();
+  }
+  
 };

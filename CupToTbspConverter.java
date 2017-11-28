@@ -23,4 +23,8 @@ public class CupToTbspConverter extends CookingConverter
 	  out = convert(in);
   }
   
+  public static CupToTbspConverter create() {
+	  return new CupToTbspConverter();
+  }
+  
 };

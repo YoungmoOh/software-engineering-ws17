@@ -23,4 +23,8 @@ public class DollarToWonConverter extends CurrencyConverter
 	  out = convert(in);
   }
   
+  public static DollarToWonConverter create() {
+	  return new DollarToWonConverter();
+  }
+  
 };

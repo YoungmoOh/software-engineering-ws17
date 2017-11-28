@@ -23,4 +23,8 @@ public class FahrenheitToKelvinConverter extends TemperatureConverter
 	  out = convert(in);
   }
   
+  public static FahrenheitToKelvinConverter create() {
+	  return new FahrenheitToKelvinConverter();
+  }
+  
 };
