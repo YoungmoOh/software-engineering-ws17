@@ -107,4 +107,62 @@ public class TestSuite {
         double result = test.convert(Double.MIN_VALUE);
         assertEquals(7.9E-323, result, 0.001);
     }
+    
+	//---------Singleton Test---------//
+    // Same objects have the same hash code
+    // Incomplete: different objects can also have the same hash code
+    @Test public static void SingletonTest1() {
+    	ConverterFactory test1 = ConverterFactory.getInstance();
+    	ConverterFactory test2 = ConverterFactory.getInstance();
+    	assertEquals(test1.hashCode(), test2.hashCode(), 0.001);
+    }
+    // a little hacky way to test Singleton
+    // 'equals' yields true on the same objects
+    @Test public static void SingletonTest2() {
+    	ConverterFactory test1 = ConverterFactory.getInstance();
+    	ConverterFactory test2 = ConverterFactory.getInstance();
+    	if(test1.equals(test2) == true)
+    		assertEquals(1, 1, 0);
+    	else assertEquals(1, 2, 0);
+    }
+    
+	//---------Abstract Factory Test---------//
+    // directly created converter and factory-made converter must have the same result
+    public static double value = 5.0;	// test value for factory tests
+ 
+    @Test public static void FactoryTest1() {
+    	UnitConverter test1 = new DollarToEuroConverter();
+    	UnitConverter test2 = ConverterFactory.getInstance().create("DollarToEuroConverter");
+    	assertEquals(test1.convert(value), test2.convert(value), 0.001);
+    }
+    @Test public static void FactoryTest2() {
+    	UnitConverter test1 = new DollarToWonConverter();
+    	UnitConverter test2 = ConverterFactory.getInstance().create("DollarToWonConverter");
+    	assertEquals(test1.convert(value), test2.convert(value), 0.001);
+    }
+    @Test public static void FactoryTest3() {
+    	UnitConverter test1 = new EuroToWonConverter();
+    	UnitConverter test2 = ConverterFactory.getInstance().create("EuroToWonConverter");
+    	assertEquals(test1.convert(value), test2.convert(value), 0.001);
+    }
+    @Test public static void FactoryTest4() {
+    	UnitConverter test1 = new CelciusToFahrenheitConverter();
+    	UnitConverter test2 = ConverterFactory.getInstance().create("CelciusToFahrenheitConverter");
+    	assertEquals(test1.convert(value), test2.convert(value), 0.001);
+    }
+    @Test public static void FactoryTest5() {
+    	UnitConverter test1 = new FahrenheitToKelvinConverter();
+    	UnitConverter test2 = ConverterFactory.getInstance().create("FahrenheitToKelvinConverter");
+    	assertEquals(test1.convert(value), test2.convert(value), 0.001);
+    }
+    @Test public static void FactoryTest6() {
+    	UnitConverter test1 = new PinchToTspConverter();
+    	UnitConverter test2 = ConverterFactory.getInstance().create("PinchToTspConverter");
+    	assertEquals(test1.convert(value), test2.convert(value), 0.001);
+    }
+    @Test public static void FactoryTest7() {
+    	UnitConverter test1 = new CupToTbspConverter();
+    	UnitConverter test2 = ConverterFactory.getInstance().create("CupToTbspConverter");
+    	assertEquals(test1.convert(value), test2.convert(value), 0.001);
+    }
 }
