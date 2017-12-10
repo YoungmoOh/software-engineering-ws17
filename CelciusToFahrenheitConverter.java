@@ -4,11 +4,13 @@ public class CelciusToFahrenheitConverter extends TemperatureConverter
 	public CelciusToFahrenheitConverter() {
 		inMetric = "Celcius";
 		outMetric = "Fahrenheit";
-		factor = 9/5;
+		factor = 1.8;
 	}
 
   public double convert(double inValue) {
-    return (inValue*factor)+32;
+		in = inValue;
+		out = (in * factor) + 32;
+		return out;
   }
   
   public static CelciusToFahrenheitConverter create() {

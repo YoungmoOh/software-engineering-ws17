@@ -8,7 +8,7 @@ public class CupToTspConverter extends CookingConverter
 	}
 	
 	// Decorator: extending the functionality 
-	public CupToTspConverter(CookingConverter base) {
+	public CupToTspConverter(UnitConverter base) {
 
 		//throw an exception when metrics don't match for a decorator
 		try {

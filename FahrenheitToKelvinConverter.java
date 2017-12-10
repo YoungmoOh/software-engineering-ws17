@@ -4,11 +4,13 @@ public class FahrenheitToKelvinConverter extends TemperatureConverter
 	public FahrenheitToKelvinConverter() {
 		inMetric = "Fahrenheit";
 		outMetric = "Kelvin";
-		factor = 5/9;
+		factor = 0.55;
 	}
 
   public double convert(double inValue) {
-    return (inValue + 459.67) * factor;
+		in = inValue;
+		out = (in + 459.67) * factor;
+		return out;
   }
   
   public static FahrenheitToKelvinConverter create() {

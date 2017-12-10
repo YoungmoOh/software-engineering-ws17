@@ -65,17 +65,17 @@ public class TestSuite {
     @Test public static void DETest13() {
         UnitConverter test = new FahrenheitToKelvinConverter();
         double result = test.convert(Double.MAX_VALUE);
-        assertEquals(Double.POSITIVE_INFINITY, result, 0.001);
+        assertEquals(9.887312241742736E307, result, 0.001);
     }
     @Test public static void DETest14() {
         UnitConverter test = new FahrenheitToKelvinConverter();
         double result = test.convert(92);
-        assertEquals(306.483, result, 0.001);
+        assertEquals(303.418, result, 0.001);
     }
     @Test public static void DETest15() {
         UnitConverter test = new FahrenheitToKelvinConverter();
         double result = test.convert(Double.MIN_VALUE);
-        assertEquals(255.372, result, 0.001);
+        assertEquals(252.818, result, 0.001);
     }
     @Test public static void DETest16() {
         UnitConverter test = new PinchToTspConverter();
@@ -100,7 +100,7 @@ public class TestSuite {
     @Test public static void DETest20() {
         UnitConverter test = new CupToTspConverter();
         double result = test.convert(14);
-        assertEquals(224, result, 0.001);
+        assertEquals(672, result, 0.001);
     }
     @Test public static void DETest21() {
         UnitConverter test = new CupToTspConverter();
@@ -162,7 +162,30 @@ public class TestSuite {
     }
     @Test public static void FactoryTest7() {
     	UnitConverter test1 = new CupToTspConverter();
-    	UnitConverter test2 = ConverterFactory.getInstance().create("CupToTbspConverter");
+    	UnitConverter test2 = ConverterFactory.getInstance().create("CupToTspConverter");
     	assertEquals(test1.convert(value), test2.convert(value), 0.001);
     }
+
+	//---------Decorator Test---------//
+    // Inversion causes bigger error range
+    @Test public static void DecoratorTest1() {
+    	// DollarToWon
+    	UnitConverter test = new EuroToWonConverter(new DollarToEuroConverter());
+    	assertEquals(5525, test.convert(value), 0.1);
+    }
+    @Test public static void DecoratorTest2() {
+    	// WonToEuro
+    	UnitConverter test = new DollarToEuroConverter(new InversionDecorator(new DollarToWonConverter()));
+    	assertEquals(2, test.convert(2600), 0.1);
+    }
+    @Test public static void DecoratorTest3() {
+    	// TspToCup
+    	UnitConverter test = new InversionDecorator(new CupToTspConverter());
+    	assertEquals(1, test.convert(48), 0.1);
+    }
+    @Test public static void DecoratorTest4() {
+    	// TspToPinch
+    	UnitConverter test = new InversionDecorator(new PinchToTspConverter());
+    	assertEquals(40, test.convert(value), 0.1);
+    }    
 }

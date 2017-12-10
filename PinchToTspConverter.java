@@ -8,7 +8,7 @@ public class PinchToTspConverter extends CookingConverter
 	}
 	
 	// Decorator: extending the functionality 
-	public PinchToTspConverter(CookingConverter base) {
+	public PinchToTspConverter(UnitConverter base) {
 		
 		//throw an exception when metrics don't match for a decorator
 		try {
