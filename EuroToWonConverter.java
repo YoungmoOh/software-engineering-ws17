@@ -1,30 +1,33 @@
 public class EuroToWonConverter extends CurrencyConverter
 {
-	static double in = 0;
-	static double out = 0;
+	// initialization
+	public EuroToWonConverter() {
+	  inMetric = "Euro";
+	  outMetric = "Won";
+	  factor = 1300;
+	}
+	
+	// Decorator: extending the functionality 
+	public EuroToWonConverter(UnitConverter base) {
 
-  public EuroToWonConverter() { }
-
-  public double convert(double inValue) {
-    return inValue*1300;
-  }
-
-  public String toString(){
-    return "Euro to Korean Won Converter";
-  }
+		//throw an exception when metrics don't match for a decorator
+		try {
+			if(base.outMetric != "Euro")
+				throw new UnmatchedMetricsException("Incoming value should be Euro!");
+		}
+		catch(UnmatchedMetricsException e) {
+			System.out.println(e);
+			System.exit(1);
+		}
+		
+		// extension
+		inMetric = base.inMetric;
+		outMetric = "Won";
+		factor = base.factor * 1300;
+	}
   
-  public void print() {
-	  System.out.println(toString() + " has converted " + in + " EUR to " + out + " KRW");
-  }
-  
-  // change the input value to double and calculate the output
-  public void putValues(String value) {
-	  in = Double.parseDouble(value);
-	  out = convert(in);
-  }
-  
-  public static EuroToWonConverter create() {
-	  return new EuroToWonConverter();
-  }
-  
+	public static EuroToWonConverter create() {
+		return new EuroToWonConverter();
+	}
+	
 };

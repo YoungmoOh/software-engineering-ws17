@@ -93,17 +93,17 @@ public class TestSuite {
         assertEquals(0, result, 0.001);
     }
     @Test public static void DETest19() {
-        UnitConverter test = new CupToTbspConverter();
+        UnitConverter test = new CupToTspConverter();
         double result = test.convert(Double.MAX_VALUE);
         assertEquals(Double.POSITIVE_INFINITY, result, 0.001);
     }
     @Test public static void DETest20() {
-        UnitConverter test = new CupToTbspConverter();
+        UnitConverter test = new CupToTspConverter();
         double result = test.convert(14);
         assertEquals(224, result, 0.001);
     }
     @Test public static void DETest21() {
-        UnitConverter test = new CupToTbspConverter();
+        UnitConverter test = new CupToTspConverter();
         double result = test.convert(Double.MIN_VALUE);
         assertEquals(7.9E-323, result, 0.001);
     }
@@ -161,7 +161,7 @@ public class TestSuite {
     	assertEquals(test1.convert(value), test2.convert(value), 0.001);
     }
     @Test public static void FactoryTest7() {
-    	UnitConverter test1 = new CupToTbspConverter();
+    	UnitConverter test1 = new CupToTspConverter();
     	UnitConverter test2 = ConverterFactory.getInstance().create("CupToTbspConverter");
     	assertEquals(test1.convert(value), test2.convert(value), 0.001);
     }

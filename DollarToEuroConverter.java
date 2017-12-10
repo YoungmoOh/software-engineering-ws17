@@ -1,30 +1,33 @@
 public class DollarToEuroConverter extends CurrencyConverter
 {
-	static double in = 0;
-	static double out = 0;
+	// initialization
+	public DollarToEuroConverter() {
+	  inMetric = "Dollar";
+	  outMetric = "Euro";
+	  factor = 0.85;
+	}
+	
+	// Decorator: extending the functionality 
+	public DollarToEuroConverter(UnitConverter base) {
 
-  public DollarToEuroConverter() { }
-
-  public double convert(double inValue) {
-    return inValue*0.85;
-  }
-
-  public String toString(){
-    return "Dollar to Euro Converter";
-  }
+		//throw an exception when metrics don't match for a decorator
+		try {
+			if(base.outMetric != "Dollar")
+				throw new UnmatchedMetricsException("Incoming value should be Dollar!");
+		}
+		catch(UnmatchedMetricsException e) {
+			System.out.println(e);
+			System.exit(1);
+		}
+		
+		// extension
+		inMetric = base.inMetric;
+		outMetric = "Euro";
+		factor = base.factor * 0.85;
+	}
   
-  public void print() {
-	  System.out.println(toString() + " has converted " + in + " USD to " + out + " EUR");
-  }
-
-  // change the input value to double and calculate the output
-  public void putValues(String value) {
-	  in = Double.parseDouble(value);
-	  out = convert(in);
-  }
-  
-  public static DollarToEuroConverter create() {
-	  return new DollarToEuroConverter();
-  }
-  
+	public static DollarToEuroConverter create() {
+		return new DollarToEuroConverter();
+	}
+	
 };

@@ -1,30 +1,33 @@
 public class DollarToWonConverter extends CurrencyConverter
 {
-	static double in = 0;
-	static double out = 0;
-
-  public DollarToWonConverter() { }
-
-  public double convert(double inValue) {
-    return inValue*1116;
-  }
-
-  public String toString(){
-    return "Dollar to Korean Won Converter";
-  }
+	// initialization
+	public DollarToWonConverter() {
+	  inMetric = "Dollar";
+	  outMetric = "Won";
+	  factor = 1116;
+	}
+	
+	// Decorator: extending the functionality 
+	public DollarToWonConverter(UnitConverter base) {
+		
+		//throw an exception when metrics don't match for a decorator
+		try {
+			if(base.outMetric != "Dollar")
+				throw new UnmatchedMetricsException("Incoming value should be Dollar!");
+		}
+		catch(UnmatchedMetricsException e) {
+			System.out.println(e);
+			System.exit(1);
+		}
+		
+		// extension
+		inMetric = base.inMetric;
+		outMetric = "Won";
+		factor = base.factor * 1116;
+	}
   
-  public void print() {
-	  System.out.println(toString() + " has converted " + in + " USD to " + out + " KRW");
-  }
-  
-  // change the input value to double and calculate the output
-  public void putValues(String value) {
-	  in = Double.parseDouble(value);
-	  out = convert(in);
-  }
-  
-  public static DollarToWonConverter create() {
-	  return new DollarToWonConverter();
-  }
-  
+	public static DollarToWonConverter create() {
+		return new DollarToWonConverter();
+	}
+	
 };

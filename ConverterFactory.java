@@ -14,7 +14,7 @@ public class ConverterFactory {
 		factory_methods.put("EuroToWonConverter", () -> EuroToWonConverter.create());
 		factory_methods.put("CelciusToFahrenheitConverter", () -> CelciusToFahrenheitConverter.create());
 		factory_methods.put("FahrenheitToKelvinConverter", () -> FahrenheitToKelvinConverter.create());
-		factory_methods.put("CupToTbspConverter", () -> CupToTbspConverter.create());
+		factory_methods.put("CupToTspConverter", () -> CupToTspConverter.create());
 		factory_methods.put("PinchToTspConverter", () -> PinchToTspConverter.create());
 	}
 	

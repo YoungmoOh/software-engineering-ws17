@@ -35,7 +35,7 @@ class Main {
 	  UnitConverter converter = factory.create(conversion);;
 	  
 	  // Calculate and print the result
-	  converter.putValues(value);
+	  converter.convert(Double.parseDouble(value));
 	  converter.print();
   }
   
