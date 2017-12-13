@@ -1,51 +1,25 @@
+import java.util.*;
 import java.util.Scanner;
 
 class Main {
   public static void main(String[] args) throws Exception
   {
 	  String conversion;
-	  String value;
+	  Double value;
+	  LinkedList<Command> commands = new LinkedList<Command>();
 	  
-	  // when two parameters are directly given with main function call
-	  try {
-		    conversion = args[0];
-		    value = args[1];
-
-	  } // otherwise, get the parameters
-	  catch(ArrayIndexOutOfBoundsException e) {
-		  Scanner scan = new Scanner(System.in);
-		  System.out.print("Enter Converter: ");
-		  conversion = scan.nextLine();
-		  
-		  System.out.print("Enter a value: ");
-		  value = scan.nextLine();
+	  System.out.println("Enter the pairs of a converter and a value: ");
+	  
+	  // get inputs
+	  Scanner scan = new Scanner(System.in);
+	  while(scan.hasNext()) {
+		  conversion = scan.next();
+		  value = scan.nextDouble();
+		  commands.add(new Command(conversion, value));
 	  }
 	  
-	  // the value should be double
-	  while (!isDouble(value)) {
-		  Scanner scan2 = new Scanner(System.in);
-		  System.out.print("Please enter a double value: ");
-		  value = scan2.nextLine();
-	  }
-	  
-	  // Get the Single Instance of the factory
-	  ConverterFactory factory = ConverterFactory.getInstance();
-	  
-	  // Get the corresponding converter
-	  UnitConverter converter = factory.create(conversion);;
-	  
-	  // Calculate and print the result
-	  converter.convert(Double.parseDouble(value));
-	  converter.print();
-  }
-  
-  // is the string parsable as double?
-  public static boolean isDouble(String value) {
-	  try {
-		  Double.parseDouble(value);
-	  } catch(NumberFormatException e) {
-		  return false;
-	  }
-	  return true;
+	  // execute all commands
+	  for(Command command : commands)
+		  command.execute();
   }
 }
