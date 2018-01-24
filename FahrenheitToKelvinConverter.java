@@ -8,7 +8,17 @@ public class FahrenheitToKelvinConverter extends TemperatureConverter
 	}
 
   public double convert(double inValue) {
-		in = inValue;
+	
+	  try {
+		  if(inValue < -459.67) {
+			  throw new ValueOutOfRangeException("Fahrenheit should be above -459.67!");
+		  }
+	  } catch (ValueOutOfRangeException e) {
+		  System.out.println(e);
+		  System.exit(1);
+	  }
+	  
+	  	in = inValue;
 		out = (in + 459.67) * factor;
 		return out;
   }

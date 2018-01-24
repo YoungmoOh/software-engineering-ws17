@@ -8,7 +8,17 @@ public class CelciusToFahrenheitConverter extends TemperatureConverter
 	}
 
   public double convert(double inValue) {
-		in = inValue;
+
+	  try {
+		  if(inValue < -273.15) {
+			  throw new ValueOutOfRangeException("Celcius should be above -273.15!");
+		  }
+	  } catch (ValueOutOfRangeException e) {
+		  System.out.println(e);
+		  System.exit(1);
+	  }
+	  
+	  	in = inValue;
 		out = (in * factor) + 32;
 		return out;
   }
